@@ -60,7 +60,7 @@ namespace SpaceShooter
             player = new Player(this.Content.Load<Texture2D>("Sprites/ship"), 
                 380, 400, 2.5f, 4.5f, this.Content.Load<Texture2D>("Sprites/bullet"));
             printText = new PrintText(Content.Load<SpriteFont>("myFont"));
-            goldCoinSprite = Content.Load<Texture2D>("coin");
+            goldCoinSprite = Content.Load<Texture2D>("Sprites/coin");
 
             //Skapa fiender
             enemies = new List<Enemy>();
@@ -82,7 +82,7 @@ namespace SpaceShooter
                 enemies.Add(temp);
             }
 
-            /*
+            
             //Tripoder
             tmpSprite = this.Content.Load<Texture2D>("Sprites/tripod");
             for (int i = 0; i < enemiesCount; i++)
@@ -93,17 +93,14 @@ namespace SpaceShooter
                 Tripod temp = new Tripod(tmpSprite, rndX, -rndY);
                 enemies.Add(temp);
             }
-            */
+            
         }
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
         /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
+       
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -185,13 +182,18 @@ namespace SpaceShooter
             base.Update(gameTime);
         }
 
+         protected override void UnloadContent()
+        {
+            // TODO: Unload any non ContentManager content here
+        }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-
+           
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
@@ -213,12 +215,10 @@ namespace SpaceShooter
             printText.Print("Poäng:" + player.Points, spriteBatch, 0, 0);
             printText.Print("Antal fiender:" + enemies.Count, spriteBatch, 0, 20);
 
-            spriteBatch.End();
-
             //Rita guldmynt
             foreach (GoldCoin gc in goldCoins)
                 gc.Draw(spriteBatch);
-
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

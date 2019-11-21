@@ -39,13 +39,14 @@ namespace SpaceShooter
         }
     }
 
-    class Tripod : PhysicalObject
+    class Tripod : Enemy
     {
         public Tripod(Texture2D texture, float X, float Y) 
-            : base(texture, X, Y, 0f, 30f)
+            : base(texture, X, Y, 10f, 1f)
         {
         }
-        public void Update(GameWindow window)
+
+        public override void Update(GameWindow window)
         {
             //Flytta på fienden
             position.Y += speed.Y;
